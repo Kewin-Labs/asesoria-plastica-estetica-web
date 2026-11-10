@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  chatwoot-base: &chatwoot-base
+    image: chatwoot/chatwoot:latest
+    env_file: .env.chatwoot
+    volumes:
+      - chatwoot-storage:/app/storage
+    depends_on:
+      - chatwoot-postgres
+      - chatwoot-redis
+
+  chatwoot-rails:
+    <<: *chatwoot-base
+    container_name: chatwoot-rails
+    ports:
+      - "3000:3000"
+    command: bundle exec rails s -b 0.0.0.0 -p 3000
+    restart: unless-stopped
+
+  chatwoot-sidekiq:
+    <<: *chatwoot-base
+    container_name: chatwoot-sidekiq
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    restart: unless-stopped
+
+  chatwoot-postgres:
+    image: postgres:15
+    container_name: chatwoot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chatwoot_production
+      POSTGRES_USER: chatwoot
+      POSTGRES_PASSWORD: ${CHATWOOT_DB_PASSWORD:-changeme_db_password}
+    volumes:
+      - chatwoot-postgres-data:/var/lib/postgresql/data
+
+  chatwoot-redis:
+    image: redis:7-alpine
+    container_name: chatwoot-redis
+    restart: unless-stopped
+    volumes:
+      - chatwoot-redis-data:/data
+
+volumes:
+  chatwoot-storage:
+  chatwoot-postgres-data:
+  chatwoot-redis-data:

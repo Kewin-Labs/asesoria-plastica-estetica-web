@@ -1,0 +1,27 @@
+:root {
+  /* Paleta oficial */
+  --black: #0b0b0b;
+  --black-2: #151515;
+  --black-3: #1c1c1c;
+  --gold: #c8a45d;
+  --gold-light: #e6cc91;
+  --white: #f7f4ed;
+  --gray: #b8b8b8;
+
+  --line: rgba(200, 164, 93, 0.22);
+  --line-soft: rgba(247, 244, 237, 0.08);
+
+  /* Tipografía */
+  --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Espaciado y forma */
+  --container: 1200px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --section-y: clamp(4.5rem, 10vw, 8rem);
+  --radius: 14px;
+  --radius-sm: 8px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 76px;
+}
