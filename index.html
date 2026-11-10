@@ -20,10 +20,8 @@
       property="og:description"
       content="Conoce los servicios de Asesoría Plástica y Estética y solicita información personalizada a través de WhatsApp."
     />
-    <!-- PENDIENTE: cuando exista el dominio definitivo, agregar:
-         <meta property="og:url" content="https://DOMINIO/" />
-         <meta property="og:image" content="https://DOMINIO/og-image.jpg" />
-         <link rel="canonical" href="https://DOMINIO/" /> -->
+    <meta property="og:url" content="https://asesoriaplasticayestetica.com/" />
+    <link rel="canonical" href="https://asesoriaplasticayestetica.com/" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -41,5 +39,21 @@
       Para ver este sitio, activa JavaScript o escríbenos por WhatsApp al +57 318 686 7465.
     </noscript>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function(d,t) {
+        var BASE_URL="https://chat.asesoriaplasticayestetica.com";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.defer=true;
+        g.async=true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: '9ZQhUmzoN8i14wW4tWaqBCud',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
   </body>
 </html>
