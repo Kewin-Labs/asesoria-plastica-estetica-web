@@ -1,0 +1,778 @@
+/* ═══════════════════════════════════════════════════════════
+   Asesoría Plástica y Estética — Custom Branding Layer
+   Sobre motor3d.css. Paleta dorado/negro premium.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --m3d-fondo: #0B0B0B;
+  --m3d-texto: #F7F4ED;
+  --m3d-acento: #C8A45D;
+  --m3d-sobre-acento: #0B0B0B;
+  --m3d-fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --ap-dorado: #C8A45D;
+  --ap-dorado-claro: #E6CC91;
+  --ap-dorado-oscuro: #A88B3D;
+  --ap-negro: #0B0B0B;
+  --ap-negro-sec: #151515;
+  --ap-blanco: #F7F4ED;
+  --ap-gris: #B8B8B8;
+  --ap-serif: "Cormorant Garamond", "Georgia", serif;
+}
+
+/* ─── Tipografía serif para títulos ─── */
+.ap-titulo-serif {
+  font-family: var(--ap-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.ap-titulo-hero {
+  font-family: var(--ap-serif);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.ap-subtitulo {
+  color: var(--ap-gris);
+  font-weight: 300;
+  max-width: 540px;
+}
+
+.ap-titulo-transformacion {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+}
+
+/* ─── Navegación en cabecera ─── */
+.ap-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.ap-nav a {
+  color: var(--ap-gris);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.ap-nav a:hover {
+  color: var(--ap-dorado);
+}
+
+@media (max-width: 819px) {
+  .ap-nav { display: none; }
+}
+
+/* ─── Categorías de servicios (grid) ─── */
+.ap-categorias {
+  gap: 1rem;
+}
+
+.ap-categoria {
+  text-align: left;
+  padding: 2rem 1.5rem;
+}
+
+.ap-cat-img-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: -2rem -1.5rem 1rem;
+  aspect-ratio: 16/9;
+}
+
+.ap-cat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ap-categoria:hover .ap-cat-img {
+  transform: scale(1.05);
+}
+
+.ap-cat-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(11,11,11,0.85) 100%);
+  pointer-events: none;
+}
+
+.ap-cat-icono {
+  font-size: 1.5rem;
+  color: var(--ap-dorado);
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Imagen destacada de sección ─── */
+.ap-feature-img {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,164,93,0.12);
+}
+
+.ap-feature-img img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.ap-feature-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(11,11,11,0.6) 100%);
+  pointer-events: none;
+}
+
+.ap-feature-img--hero {
+  border-radius: 20px;
+  max-width: 480px;
+}
+
+.ap-feature-img--cierre {
+  max-width: 320px;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  margin: 0 auto 1.5rem;
+}
+
+.ap-feature-img--cierre img {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.ap-categoria h3 {
+  font-family: var(--ap-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ap-blanco);
+}
+
+.ap-ver-mas {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ap-dorado);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.ap-ver-mas:hover {
+  color: var(--ap-dorado-claro);
+}
+
+/* ─── Lista de servicios corporales ─── */
+.ap-servicios-lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.ap-servicio {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,164,93,0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.ap-servicio:hover {
+  border-color: rgba(200,164,93,0.35);
+  background: rgba(255,255,255,0.05);
+}
+
+.ap-servicio h4 {
+  font-family: var(--ap-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ap-dorado-claro);
+  margin: 0 0 0.35rem;
+}
+
+.ap-servicio p {
+  font-size: 0.85rem;
+  color: var(--ap-gris);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── Imágenes en tarjetas de servicio ─── */
+.ap-serv-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: -1.25rem -1.25rem 0.75rem;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.ap-serv-img-wrap--wide {
+  margin: 0 0 1rem;
+  border-radius: 12px;
+}
+
+.ap-serv-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ap-servicio:hover .ap-serv-img,
+.ap-servicio-destacado:hover .ap-serv-img {
+  transform: scale(1.05);
+}
+
+.ap-serv-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(11,11,11,0.7) 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .ap-servicios-lista { grid-template-columns: 1fr; }
+}
+
+/* ─── Bloque complementarios + cirugía ─── */
+.ap-bloque-servicio {
+  margin-bottom: 2rem;
+}
+
+.ap-sub-categoria {
+  font-family: var(--ap-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ap-dorado);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(200,164,93,0.2);
+}
+
+.ap-servicios-compactos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ap-servicio-compacto {
+  font-size: 0.95rem;
+  color: var(--ap-gris);
+  line-height: 1.6;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(200,164,93,0.2);
+}
+
+.ap-servicio-compacto--con-img {
+  padding-left: 0;
+  border-left: none;
+}
+
+.ap-servicio-compacto--con-img .ap-serv-img-wrap {
+  margin: 0 0 0.75rem;
+  border-radius: 10px;
+  aspect-ratio: 16/9;
+}
+
+.ap-servicio-compacto strong {
+  color: var(--ap-blanco);
+}
+
+.ap-cirugia-bloque {
+  background: rgba(200,164,93,0.04);
+  border: 1px solid rgba(200,164,93,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.ap-servicio-destacado h4 {
+  font-family: var(--ap-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ap-dorado-claro);
+  margin: 0 0 0.5rem;
+}
+
+.ap-servicio-destacado p {
+  font-size: 0.9rem;
+  color: var(--ap-gris);
+  line-height: 1.6;
+}
+
+.ap-disclaimer {
+  font-size: 0.8rem;
+  color: rgba(184,184,184,0.6);
+  font-style: italic;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─── Sección transformación ─── */
+.ap-seccion-transformacion {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ap-seccion-transformacion > * {
+  text-shadow: 0 2px 30px rgba(11,11,11,0.9), 0 0 60px rgba(11,11,11,0.6);
+}
+
+#cierre > * {
+  text-shadow: 0 2px 30px rgba(11,11,11,0.9), 0 0 60px rgba(11,11,11,0.6);
+}
+
+/* ─── Ubicaciones / Sedes ─── */
+.ap-sedes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ap-sede {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,164,93,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.ap-sede:hover {
+  border-color: rgba(200,164,93,0.4);
+}
+
+.ap-sede-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: -1.5rem -1.5rem 1rem;
+  aspect-ratio: 16/9;
+}
+
+.ap-sede-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ap-sede:hover .ap-sede-img {
+  transform: scale(1.05);
+}
+
+.ap-sede h3 {
+  font-family: var(--ap-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ap-dorado);
+  margin: 0 0 0.5rem;
+}
+
+.ap-sede-dir {
+  font-size: 0.85rem;
+  color: var(--ap-gris);
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
+
+.ap-sede-tel {
+  display: inline-block;
+  color: var(--ap-blanco);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.ap-sede-tel:hover {
+  color: var(--ap-dorado);
+}
+
+@media (max-width: 700px) {
+  .ap-sedes { grid-template-columns: 1fr; }
+}
+
+/* ─── Botones especiales ─── */
+.ap-boton-grande {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+}
+
+.ap-boton-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  border-color: #25D366;
+}
+
+.ap-boton-whatsapp:hover {
+  background: #20bd5a;
+  border-color: #20bd5a;
+}
+
+.ap-wa-icon {
+  flex-shrink: 0;
+}
+
+/* ─── Footer personalizado ─── */
+.ap-footer {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.ap-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ap-footer-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.ap-footer-brand span {
+  font-family: var(--ap-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ap-blanco);
+}
+
+.ap-footer-legal {
+  max-width: 600px;
+  font-size: 0.8rem;
+  color: rgba(184,184,184,0.5);
+  line-height: 1.5;
+}
+
+.ap-footer-legal a {
+  color: var(--ap-dorado);
+  text-decoration: none;
+}
+
+.ap-footer-legal a:hover {
+  text-decoration: underline;
+}
+
+.ap-footer-copy {
+  font-size: 0.75rem;
+  color: rgba(184,184,184,0.35);
+}
+
+/* ─── WhatsApp flotante ─── */
+.ap-whatsapp-flotante {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+
+.ap-whatsapp-flotante:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+}
+
+/* ─── Logo premium badge ─── */
+.ap-logo-badge {
+  border-radius: 50%;
+  border: 2px solid var(--ap-dorado);
+  box-shadow: 0 0 16px rgba(200,164,93,0.35), 0 0 4px rgba(200,164,93,0.2);
+  object-fit: cover;
+  background: var(--ap-negro);
+}
+
+.m3d-cabecera__marca .ap-logo-badge {
+  width: 44px;
+  height: 44px;
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.m3d-cabecera--compacta .m3d-cabecera__marca .ap-logo-badge {
+  width: 40px;
+  height: 40px;
+}
+
+.ap-footer-logo.ap-logo-badge {
+  width: 52px;
+  height: 52px;
+}
+
+.ap-intro-logo {
+  max-width: min(85vw, 420px);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(200,164,93,0.25);
+}
+
+/* ─── Mejoras a las tarjetas glassmorphism del motor ─── */
+.m3d-tarjeta {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ─── Scroll suave para los enlaces internos ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Animación sutil al cargar ─── */
+@keyframes ap-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.m3d-hero-entra > * {
+  animation: ap-fade-up 0.8s ease-out both;
+}
+
+.m3d-hero-entra > :nth-child(1) { animation-delay: 0.3s; }
+.m3d-hero-entra > :nth-child(2) { animation-delay: 0.5s; }
+.m3d-hero-entra > :nth-child(3) { animation-delay: 0.7s; }
+.m3d-hero-entra > :nth-child(4) { animation-delay: 0.9s; }
+
+/* ─── Galería de ambiente clínico ─── */
+.ap-galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.ap-galeria-item {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.ap-galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ap-galeria-item:hover img {
+  transform: scale(1.08);
+}
+
+.ap-galeria-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(11,11,11,0.5) 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .ap-galeria { grid-template-columns: 1fr; }
+}
+
+/* ─── Proceso de consulta (pasos) ─── */
+.ap-proceso {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.ap-paso {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,164,93,0.12);
+  border-radius: 16px;
+  transition: border-color 0.3s;
+}
+
+.ap-paso:hover {
+  border-color: rgba(200,164,93,0.35);
+}
+
+.ap-paso-img {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(200,164,93,0.25);
+}
+
+.ap-paso-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ap-paso-num {
+  display: block;
+  font-family: var(--ap-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ap-dorado);
+  margin-bottom: 0.25rem;
+}
+
+.ap-paso h4 {
+  font-family: var(--ap-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ap-blanco);
+  margin: 0 0 0.35rem;
+}
+
+.ap-paso p {
+  font-size: 0.82rem;
+  color: var(--ap-gris);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .ap-proceso { grid-template-columns: 1fr; }
+}
+
+/* ─── Fondos atmosféricos de storytelling ─── */
+#inicio,
+#historia,
+#servicios,
+#corporales,
+#complementarios,
+#transformacion,
+#confianza,
+#ubicaciones,
+#cierre {
+  position: relative;
+}
+
+#inicio::before,
+#historia::before,
+#servicios::before,
+#corporales::before,
+#complementarios::before,
+#transformacion::before,
+#confianza::before,
+#ubicaciones::before,
+#cierre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+#inicio::before           { background-image: url('assets/hero-bg.png');             opacity: 0.15; }
+#historia::before         { background-image: url('assets/historia-bg.png');         opacity: 0.1; }
+#servicios::before        { background-image: url('assets/servicios-bg.png');        opacity: 0.1; }
+#corporales::before       { background-image: url('assets/corporales-bg.png');       opacity: 0.12; }
+#complementarios::before  { background-image: url('assets/complementarios-bg.png');  opacity: 0.1; }
+#transformacion::before   { background-image: url('assets/transformacion-bg.png');   opacity: 0.18; }
+#confianza::before        { background-image: url('assets/mosaico-tratamientos.png'); opacity: 0.06; }
+#ubicaciones::before      { background-image: url('assets/sedes-bg.png');            opacity: 0.1; }
+#cierre::before           { background-image: url('assets/cierre-bg.png');           opacity: 0.14; }
+
+/* ─── Sección confianza ─── */
+.ap-confianza-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+  max-width: 700px;
+}
+.ap-confianza-stat {
+  text-align: center;
+  padding: 1.25rem 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,164,93,0.15);
+  border-radius: 16px;
+  transition: border-color 0.3s;
+}
+.ap-confianza-stat:hover { border-color: rgba(200,164,93,0.4); }
+.ap-confianza-icono {
+  width: 64px; height: 64px; margin: 0 auto 0.75rem;
+  border-radius: 50%; overflow: hidden;
+  border: 2px solid rgba(200,164,93,0.3);
+}
+.ap-confianza-icono img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ap-confianza-num {
+  display: block;
+  font-family: var(--ap-serif); font-size: 2rem; font-weight: 700;
+  color: var(--ap-dorado); line-height: 1.1;
+}
+.ap-confianza-label {
+  display: block;
+  font-size: 0.82rem; color: var(--ap-gris); margin-top: 0.25rem;
+}
+.ap-mosaico {
+  max-width: 600px; margin: 1.5rem auto;
+  border-radius: 16px; overflow: hidden;
+  position: relative;
+}
+.ap-mosaico img { width: 100%; display: block; transition: transform 0.6s ease; }
+.ap-mosaico:hover img { transform: scale(1.03); }
+.ap-mosaico::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(11,11,11,0.5) 100%);
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .ap-confianza-grid { grid-template-columns: 1fr; max-width: 280px; margin-inline: auto; }
+}
+
+/* ─── Accesibilidad: reducir movimiento ─── */
+@media (prefers-reduced-motion: reduce) {
+  .m3d-hero-entra > * {
+    animation: none;
+    opacity: 1;
+  }
+  .ap-whatsapp-flotante {
+    transition: none;
+  }
+}

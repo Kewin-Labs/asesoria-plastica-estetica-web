@@ -1,43 +1,406 @@
 <!doctype html>
-<html lang="es-CO">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asesoría Plástica y Estética | Servicios y tratamientos estéticos</title>
-    <meta
-      name="description"
-      content="Conoce los servicios de Asesoría Plástica y Estética y solicita información personalizada a través de WhatsApp."
-    />
-    <meta name="theme-color" content="#0B0B0B" />
-    <meta name="robots" content="index, follow" />
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asesoría Plástica y Estética — Tu transformación comienza con una decisión</title>
+  <meta name="description" content="Orientación personalizada en tratamientos estéticos, corporales y cirugía plástica en Bucaramanga, Bogotá y Medellín. Asesoría Plástica by Daniel Praga.">
+  <meta name="theme-color" content="#0B0B0B">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_CO" />
-    <meta property="og:site_name" content="Asesoría Plástica y Estética" />
-    <meta property="og:title" content="Asesoría Plástica y Estética | Servicios y tratamientos estéticos" />
-    <meta
-      property="og:description"
-      content="Conoce los servicios de Asesoría Plástica y Estética y solicita información personalizada a través de WhatsApp."
-    />
-    <meta property="og:url" content="https://asesoriaplasticayestetica.com/" />
-    <link rel="canonical" href="https://asesoriaplasticayestetica.com/" />
-    <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:title" content="Asesoría Plástica y Estética">
+  <meta property="og:description" content="Tu transformación comienza con una decisión. Tratamientos corporales, faciales y cirugía plástica.">
+  <meta property="og:type" content="website">
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <noscript>
-      Para ver este sitio, activa JavaScript o escríbenos por WhatsApp al +57 318 686 7465.
-    </noscript>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="motor-3d/motor3d.css">
+  <link rel="stylesheet" href="asesoria.css">
+</head>
+<body>
+
+  <!-- Cortina de intro -->
+  <div class="m3d-intro" aria-hidden="true">
+    <img src="assets/logotipo.jpeg" alt="" class="ap-intro-logo">
+  </div>
+
+  <!-- Cabecera fija -->
+  <header class="m3d-cabecera">
+    <a class="m3d-cabecera__marca" href="#inicio">
+      <img src="assets/logo-circular.jpeg" alt="Asesoría Plástica y Estética" class="ap-logo-badge">
+      <span>Asesoría Plástica</span>
+    </a>
+    <nav class="ap-nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicaciones">Sedes</a>
+    </nav>
+    <a class="m3d-boton" href="https://wa.me/573186867465?text=Hola%2C%20deseo%20recibir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Asesor%C3%ADa%20Pl%C3%A1stica%20y%20Est%C3%A9tica." target="_blank" rel="noopener">Agenda tu cita</a>
+  </header>
+
+  <!-- Canvas 3D -->
+  <canvas id="escena3d"></canvas>
+
+  <!-- Motor 3D: objeto estrella = TorusKnot dorado (fallback, sin GLB),
+       partículas doradas de ambiente, formas flotantes decorativas -->
+  <main data-motor3d
+        data-modelo="assets/objeto.glb"
+        data-acento="#C8A45D"
+        data-fondo="#0B0B0B"
+        data-poster="assets/poster.png"
+        data-objetos='[
+          {"id":"ambiente","tipo":"particulas","cantidad":140,"tamano":0.06,"color":"#C8A45D"},
+          {"id":"formas","tipo":"formas","cantidad":5,"tamano":0.15,"color":"#C8A45D"}
+        ]'>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         1 · EL COMIENZO — Hero
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="inicio" class="m3d-seccion m3d-seccion--centro m3d-seccion--hero"
+             data-3d='{"rot":[0,0,0],"pos":[0,1.4,0],"escala":0.45,"cam":[0,0.3,6.6],"mira":[0,0.3,0],"explota":0,"luz":1.1,
+                       "objetos":{"ambiente":{"opacidad":0.4},"formas":{"opacidad":0.15}}}'>
+      <div class="m3d-hero-entra">
+        <span class="m3d-etiqueta">Asesoría Plástica y Estética</span>
+        <h1 class="m3d-titulo m3d-titulo--xl m3d-split ap-titulo-hero">Tu transformación comienza con una decisión</h1>
+        <p class="m3d-texto m3d-texto--grande ap-subtitulo">Orientación personalizada en tratamientos estéticos, corporales y cirugía plástica.</p>
+        <div class="ap-feature-img ap-feature-img--hero m3d-reveal">
+          <img src="assets/feature-hero.png" alt="Asesoría Plástica y Estética" loading="lazy">
+        </div>
+        <div class="m3d-botones">
+          <a class="m3d-boton m3d-pulso" href="https://wa.me/573186867465?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n." target="_blank" rel="noopener">Agenda tu valoración</a>
+          <a class="m3d-boton m3d-boton--fantasma" href="#historia">Descubre más</a>
+        </div>
+      </div>
+      <div class="m3d-pista">Desliza</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         2 · LA HISTORIA — Narrativa progresiva
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="historia" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[0,45,0],"pos":[1.4,0,0],"escala":0.95,"cam":[0,0.2,6],
+                       "objetos":{"ambiente":{"opacidad":0.55},"formas":{"opacidad":0.25}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Nuestra filosofía</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Cada persona tiene una historia.<br>Una necesidad. Un deseo.<br>Un siguiente paso.</h2>
+      <div class="ap-feature-img m3d-reveal">
+        <img src="assets/feature-historia.png" alt="Consulta personalizada" loading="lazy">
+      </div>
+      <p class="m3d-texto m3d-reveal">En Asesoría Plástica y Estética no ofrecemos procedimientos: ofrecemos orientación. Cada tratamiento comienza con una conversación, una valoración profesional y un plan diseñado para ti.</p>
+      <p class="m3d-texto m3d-reveal">Con presencia en <strong>Bucaramanga</strong>, <strong>Bogotá</strong> y <strong>Medellín</strong>, Daniel Praga y su equipo acompañan tu proceso con transparencia, experiencia y compromiso.</p>
+
+      <!-- Galería de ambiente clínico -->
+      <div class="ap-galeria m3d-reveal">
+        <div class="ap-galeria-item"><img src="assets/galeria-recepcion.png" alt="Recepción" loading="lazy"></div>
+        <div class="ap-galeria-item"><img src="assets/galeria-sala.png" alt="Sala de tratamiento" loading="lazy"></div>
+        <div class="ap-galeria-item"><img src="assets/galeria-pasillo.png" alt="Instalaciones" loading="lazy"></div>
+      </div>
+
+      <!-- Proceso de consulta -->
+      <div class="ap-proceso m3d-reveal">
+        <div class="ap-paso">
+          <div class="ap-paso-img"><img src="assets/paso-consulta.png" alt="Paso 1" loading="lazy"></div>
+          <span class="ap-paso-num">01</span>
+          <h4>Consulta</h4>
+          <p>Conversación para entender tus necesidades y expectativas.</p>
+        </div>
+        <div class="ap-paso">
+          <div class="ap-paso-img"><img src="assets/paso-valoracion.png" alt="Paso 2" loading="lazy"></div>
+          <span class="ap-paso-num">02</span>
+          <h4>Valoración</h4>
+          <p>Evaluación profesional personalizada de tu caso.</p>
+        </div>
+        <div class="ap-paso">
+          <div class="ap-paso-img"><img src="assets/paso-plan.png" alt="Paso 3" loading="lazy"></div>
+          <span class="ap-paso-num">03</span>
+          <h4>Tu plan</h4>
+          <p>Protocolo diseñado a tu medida con toda la información.</p>
+        </div>
+      </div>
+
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton m3d-boton--fantasma" href="#servicios">Conoce nuestros servicios</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         3 · DESCUBRIMIENTO — Categorías de servicios
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="servicios" class="m3d-seccion m3d-seccion--der"
+             data-3d='{"rot":[0,150,0],"pos":[-1.3,0,0],"escala":1.15,"cam":[0,0,6],
+                       "objetos":{"ambiente":{"opacidad":0.5},"formas":{"opacidad":0.3}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Nuestros servicios</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Cuidado integral para tu bienestar</h2>
+      <div class="m3d-rejilla ap-categorias">
+        <article class="m3d-tarjeta m3d-reveal ap-categoria" data-cat="corporal">
+          <div class="ap-cat-img-wrap"><img src="assets/cat-corporal.png" alt="Tratamientos corporales" class="ap-cat-img" loading="lazy"></div>
+          <h3>Tratamientos corporales</h3>
+          <p>Protocolos no quirúrgicos para el cuidado del contorno corporal: hidrolipoclasia, maderoterapia, radiofrecuencia y más.</p>
+          <a class="ap-ver-mas" href="#corporales">Explorar →</a>
+        </article>
+        <article class="m3d-tarjeta m3d-reveal ap-categoria" data-cat="facial">
+          <div class="ap-cat-img-wrap"><img src="assets/cat-complementarios.png" alt="Tratamientos complementarios" class="ap-cat-img" loading="lazy"></div>
+          <h3>Tratamientos complementarios</h3>
+          <p>Alternativas que se integran a tu plan de cuidado: carboxiterapia, vitamina C y tratamientos especializados.</p>
+          <a class="ap-ver-mas" href="#complementarios">Explorar →</a>
+        </article>
+        <article class="m3d-tarjeta m3d-reveal ap-categoria" data-cat="cirugia">
+          <div class="ap-cat-img-wrap"><img src="assets/cat-cirugia.png" alt="Cirugía plástica" class="ap-cat-img" loading="lazy"></div>
+          <h3>Cirugía plástica</h3>
+          <p>Procedimientos quirúrgicos con valoración médica especializada, exámenes previos y acompañamiento completo.</p>
+          <a class="ap-ver-mas" href="#cirugia">Explorar →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         4 · SERVICIOS CORPORALES — Tratamientos detallados
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="corporales" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[12,260,0],"pos":[1.1,0,0],"escala":1.05,"cam":[0,0.3,5.2],"mira":[0.3,0,0],"explota":0.4,"luz":1.25,
+                       "objetos":{"ambiente":{"opacidad":0.6},"formas":{"opacidad":0.1}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Tratamientos corporales</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Protocolos diseñados para ti</h2>
+      <div class="ap-feature-img m3d-reveal">
+        <img src="assets/feature-corporales.png" alt="Tratamiento corporal premium" loading="lazy">
+      </div>
+      <div class="ap-servicios-lista">
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-hidrolipoclasia.png" alt="Hidrolipoclasia" class="ap-serv-img" loading="lazy"></div>
+          <h4>Hidrolipoclasia</h4>
+          <p>Procedimiento no quirúrgico orientado al tratamiento de la grasa localizada.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-maderoterapia.png" alt="Maderoterapia" class="ap-serv-img" loading="lazy"></div>
+          <h4>Maderoterapia</h4>
+          <p>Técnica de masaje con instrumentos de madera para el cuidado corporal.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-radiofrecuencia.png" alt="Radiofrecuencia" class="ap-serv-img" loading="lazy"></div>
+          <h4>Radiofrecuencia</h4>
+          <p>Tecnología de calor controlado para el cuidado de la piel y el cuerpo.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-vacumterapia.png" alt="Vacumterapia" class="ap-serv-img" loading="lazy"></div>
+          <h4>Vacumterapia</h4>
+          <p>Succión controlada como parte de protocolos corporales y de drenaje.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-cavitacion.png" alt="Cavitación" class="ap-serv-img" loading="lazy"></div>
+          <h4>Cavitación</h4>
+          <p>Ultrasonido de baja frecuencia para protocolos de grasa localizada.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-corrientes.png" alt="Corrientes rusas" class="ap-serv-img" loading="lazy"></div>
+          <h4>Corrientes rusas</h4>
+          <p>Electroestimulación como complemento en protocolos de tonificación.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-gluteos.png" alt="Levantamiento de glúteos" class="ap-serv-img" loading="lazy"></div>
+          <h4>Levantamiento de glúteos</h4>
+          <p>Protocolo no quirúrgico personalizado enfocado en la zona glútea.</p>
+        </div>
+        <div class="ap-servicio ap-servicio--con-img m3d-reveal">
+          <div class="ap-serv-img-wrap"><img src="assets/serv-posthidro.png" alt="Tratamiento posthidro" class="ap-serv-img" loading="lazy"></div>
+          <h4>Tratamiento posthidro</h4>
+          <p>Sesiones de acompañamiento posteriores a la hidrolipoclasia.</p>
+        </div>
+      </div>
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton" href="https://wa.me/573186867465?text=Hola%2C%20me%20interesan%20los%20tratamientos%20corporales.%20%C2%BFPodr%C3%ADan%20orientarme%3F" target="_blank" rel="noopener">Consultar tratamientos</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         5 · COMPLEMENTARIOS + CIRUGÍA — Servicios especializados
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="complementarios" class="m3d-seccion m3d-seccion--der"
+             data-3d='{"rot":[0,380,0],"pos":[-1.25,0.1,0],"escala":1,"cam":[0,0,6],"mira":[0,0,0],"explota":0,"luz":0.9,"color":"#E6CC91",
+                       "objetos":{"ambiente":{"opacidad":0.35},"formas":{"opacidad":0.2}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Complementarios y cirugía</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Atención especializada</h2>
+      <div class="ap-feature-img m3d-reveal">
+        <img src="assets/feature-complementarios.png" alt="Tratamiento complementario especializado" loading="lazy">
+      </div>
+
+      <div class="ap-bloque-servicio m3d-reveal">
+        <h3 class="ap-sub-categoria">Tratamientos complementarios</h3>
+        <div class="ap-servicios-compactos">
+          <div class="ap-servicio-compacto ap-servicio-compacto--con-img">
+            <div class="ap-serv-img-wrap"><img src="assets/serv-carboxiterapia.png" alt="Carboxiterapia" class="ap-serv-img" loading="lazy"></div>
+            <strong>Carboxiterapia</strong> — Microinyecciones de CO₂ medicinal en zonas específicas.
+          </div>
+          <div class="ap-servicio-compacto ap-servicio-compacto--con-img">
+            <div class="ap-serv-img-wrap"><img src="assets/serv-vitaminac.png" alt="Vitamina C" class="ap-serv-img" loading="lazy"></div>
+            <strong>Vitamina C</strong> — Tratamiento dentro de un plan de cuidado personalizado.
+          </div>
+          <div class="ap-servicio-compacto ap-servicio-compacto--con-img">
+            <div class="ap-serv-img-wrap"><img src="assets/serv-musculo.png" alt="Músculo estriado" class="ap-serv-img" loading="lazy"></div>
+            <strong>Músculo estriado</strong> — Tratamientos complementarios especializados.
+          </div>
+        </div>
+      </div>
+
+      <div class="ap-bloque-servicio ap-cirugia-bloque m3d-reveal" id="cirugia">
+        <h3 class="ap-sub-categoria">Cirugía plástica</h3>
+        <div class="ap-servicio-destacado">
+          <div class="ap-serv-img-wrap ap-serv-img-wrap--wide"><img src="assets/serv-cirugia-vaser.png" alt="Lipoescultura VASER" class="ap-serv-img" loading="lazy"></div>
+          <h4>Lipoescultura VASER</h4>
+          <p>Procedimiento quirúrgico con tecnología de ultrasonido VASER. Requiere valoración médica especializada, exámenes previos y consentimiento informado.</p>
+        </div>
+        <p class="ap-disclaimer">La información de este sitio es de carácter general y no sustituye la valoración ni la orientación de un profesional de la salud.</p>
+      </div>
+
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton" href="https://wa.me/573186867465?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20cirug%C3%ADa%20pl%C3%A1stica.%20%C2%BFPodr%C3%ADan%20orientarme%3F" target="_blank" rel="noopener">Solicitar valoración</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         6 · TRANSFORMACIÓN — Momento emocional
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="transformacion" class="m3d-seccion m3d-seccion--centro ap-seccion-transformacion"
+             data-3d='{"rot":[0,480,0],"pos":[0,-0.3,0],"escala":0.5,"cam":[0,0.2,5.5],"mira":[0,0,0],"explota":0,"luz":1.4,"color":"#C8A45D",
+                       "objetos":{"ambiente":{"opacidad":0.75},"formas":{"opacidad":0.4}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Tu momento</span>
+      <div class="ap-feature-img ap-feature-img--transformacion m3d-reveal">
+        <img src="assets/feature-transformacion.png" alt="Tu transformación" loading="lazy">
+      </div>
+      <h2 class="m3d-titulo m3d-titulo--xl m3d-reveal ap-titulo-serif ap-titulo-transformacion">La transformación comienza con información</h2>
+      <p class="m3d-texto m3d-texto--grande m3d-reveal">No se trata de cambiar quién eres.<br>Se trata de sentirte bien con quien ya eres.</p>
+      <p class="m3d-texto m3d-reveal">Cada procedimiento empieza con una conversación honesta, una valoración sin compromiso y toda la información que necesitas para decidir.</p>
+      <div class="m3d-botones m3d-reveal" style="justify-content:center">
+        <a class="m3d-boton m3d-pulso ap-boton-grande" href="https://wa.me/573186867465?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20sin%20compromiso." target="_blank" rel="noopener">Habla con un asesor</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         6b · CONFIANZA — Indicadores + mosaico visual
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="confianza" class="m3d-seccion m3d-seccion--centro ap-seccion-confianza"
+             data-3d='{"rot":[0,530,0],"pos":[0,0,0],"escala":0.7,"cam":[0,0.3,6],"mira":[0,0,0],"explota":0,"luz":1.2,
+                       "objetos":{"ambiente":{"opacidad":0.65},"formas":{"opacidad":0.3}}}'>
+      <span class="m3d-etiqueta m3d-reveal">¿Por qué elegirnos?</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Respaldo, experiencia y compromiso</h2>
+
+      <div class="ap-confianza-grid m3d-reveal">
+        <div class="ap-confianza-stat">
+          <div class="ap-confianza-icono"><img src="assets/icono-experiencia.png" alt="Experiencia" loading="lazy"></div>
+          <span class="ap-confianza-num">+10</span>
+          <span class="ap-confianza-label">Años de experiencia</span>
+        </div>
+        <div class="ap-confianza-stat">
+          <div class="ap-confianza-icono"><img src="assets/icono-pacientes.png" alt="Pacientes" loading="lazy"></div>
+          <span class="ap-confianza-num">3</span>
+          <span class="ap-confianza-label">Ciudades con presencia</span>
+        </div>
+        <div class="ap-confianza-stat">
+          <div class="ap-confianza-icono"><img src="assets/retrato-belleza.png" alt="Satisfacción" loading="lazy"></div>
+          <span class="ap-confianza-num">100%</span>
+          <span class="ap-confianza-label">Compromiso personalizado</span>
+        </div>
+      </div>
+
+      <div class="ap-mosaico m3d-reveal">
+        <img src="assets/mosaico-tratamientos.png" alt="Resultados y tratamientos" loading="lazy">
+      </div>
+
+      <div class="m3d-botones m3d-reveal" style="justify-content:center">
+        <a class="m3d-boton m3d-boton--fantasma" href="#ubicaciones">Encuentra tu sede</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         7 · UBICACIONES — Tres ciudades
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="ubicaciones" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[0,580,0],"pos":[1.3,-0.15,0],"escala":0.85,"cam":[0,0.5,6.5],"mira":[0,0,0],
+                       "objetos":{"ambiente":{"opacidad":0.4},"formas":{"opacidad":0.15}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Dónde estamos</span>
+      <h2 class="m3d-titulo m3d-reveal ap-titulo-serif">Presencia en tres ciudades</h2>
+      <div class="ap-sedes">
+        <div class="ap-sede m3d-reveal">
+          <div class="ap-sede-img-wrap"><img src="assets/sede-bucaramanga.png" alt="Bucaramanga" class="ap-sede-img" loading="lazy"></div>
+          <h3>Bucaramanga</h3>
+          <p class="ap-sede-dir">Cra 36 #42-44, Local 301</p>
+          <a class="ap-sede-tel" href="tel:+573186867465">318 686 7465</a>
+        </div>
+        <div class="ap-sede m3d-reveal">
+          <div class="ap-sede-img-wrap"><img src="assets/sede-bogota.png" alt="Bogotá" class="ap-sede-img" loading="lazy"></div>
+          <h3>Bogotá</h3>
+          <p class="ap-sede-dir">Dirección por confirmar</p>
+          <a class="ap-sede-tel" href="tel:+573186867465">318 686 7465</a>
+        </div>
+        <div class="ap-sede m3d-reveal">
+          <div class="ap-sede-img-wrap"><img src="assets/sede-medellin.png" alt="Medellín" class="ap-sede-img" loading="lazy"></div>
+          <h3>Medellín</h3>
+          <p class="ap-sede-dir">Ahora en Medellín</p>
+          <a class="ap-sede-tel" href="tel:+573186867465">318 686 7465</a>
+        </div>
+      </div>
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton" href="https://wa.me/573186867465?text=Hola%2C%20quiero%20saber%20en%20qu%C3%A9%20sede%20puedo%20agendar%20mi%20valoraci%C3%B3n." target="_blank" rel="noopener">Elige tu sede</a>
+        <a class="m3d-boton m3d-boton--fantasma" href="https://www.instagram.com/asesoriaplasticayestetica/" target="_blank" rel="noopener">@asesoriaplasticayestetica</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         8 · CIERRE — CTA final
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="cierre" class="m3d-seccion m3d-seccion--centro m3d-seccion--abajo"
+             data-3d='{"rot":[0,720,0],"pos":[0,1.6,0],"escala":0.4,"cam":[0,0.3,6.6],"mira":[0,0.3,0],"explota":0,"luz":1.3,
+                       "objetos":{"ambiente":{"opacidad":0.6},"formas":{"opacidad":0.3}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Asesoría Plástica y Estética</span>
+      <div class="ap-feature-img ap-feature-img--cierre m3d-reveal">
+        <img src="assets/feature-cierre.png" alt="Tu próximo paso" loading="lazy">
+      </div>
+      <h2 class="m3d-titulo m3d-titulo--xl m3d-reveal ap-titulo-serif">Tu próximo paso comienza con una conversación</h2>
+      <p class="m3d-texto m3d-texto--grande m3d-reveal">Escríbenos. Sin compromiso, sin presión.<br>Solo la información que necesitas.</p>
+      <div class="m3d-botones m3d-reveal" style="justify-content:center">
+        <a class="m3d-boton m3d-pulso ap-boton-grande ap-boton-whatsapp" href="https://wa.me/573186867465?text=Hola%2C%20deseo%20recibir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Asesor%C3%ADa%20Pl%C3%A1stica%20y%20Est%C3%A9tica." target="_blank" rel="noopener">
+          <svg class="ap-wa-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="m3d-pie ap-footer">
+    <div class="ap-footer-brand">
+      <img src="assets/logo-circular.jpeg" alt="Asesoría Plástica y Estética" class="ap-footer-logo ap-logo-badge">
+      <span>Asesoría Plástica y Estética</span>
+    </div>
+    <nav>
+      <a href="#historia">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicaciones">Sedes</a>
+      <a href="https://www.instagram.com/asesoriaplasticayestetica/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="ap-footer-legal">
+      <p>La información de este sitio es de carácter general y no sustituye la valoración ni la orientación de un profesional de la salud.</p>
+      <a href="legal-privacy.html">Política de privacidad</a>
+    </div>
+    <div class="ap-footer-copy">© 2026 Asesoría Plástica y Estética. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a class="ap-whatsapp-flotante" href="https://wa.me/573186867465?text=Hola%2C%20deseo%20recibir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Asesor%C3%ADa%20Pl%C3%A1stica%20y%20Est%C3%A9tica." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script type="module" src="motor-3d/motor3d.js"></script>
+</body>
 </html>
