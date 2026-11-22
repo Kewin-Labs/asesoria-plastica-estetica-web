@@ -1,0 +1,7 @@
+{
+  "domain": "asesoriaplasticayestetica.com",
+  "type": "static",
+  "deploy": "coolify",
+  "coolify_app": "tpfbpdzwr7zy4nnncp7hobhe",
+  "github_repo": "Kewin-Labs/asesoria-plastica-estetica-web"
+}
